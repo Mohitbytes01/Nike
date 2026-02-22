@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nike – Hungry For More</title>
+    <meta name="description"
+        content="Nike Air Max Pulse. Built for speed. Designed for impact. Explore the new collection." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Archivo+Narrow:wght@500;600&display=swap"
+        rel="stylesheet" />
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js" defer></script>
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ░░░ NAV ░░░ -->
+    <nav class="nav" id="nav" aria-label="Main navigation">
+        <a href="#" class="nav__logo" aria-label="Nike Home">
+            <svg class="swoosh" viewBox="0 0 1000 369" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M 0 369 L 979 0 C 979 0 1000 -6 996 20 C 992 46 935 75 791 122 C 648 169 158 369 158 369 Z" />
+            </svg>
+        </a>
+
+        <ul class="nav__links" role="list">
+            <li><a href="#first-look">Air Max</a></li>
+            <li><a href="#carousel">Collection</a></li>
+            <li><a href="#essentials">Essentials</a></li>
+        </ul>
+
+        <div class="nav__actions">
+            <button class="nav__cta" id="nav-explore-btn">Explore</button>
+        </div>
+    </nav>
+
+    <!-- ░░░ HERO – 800vh Sticky Cheetah Engine ░░░ -->
+    <section class="hero" id="hero" aria-label="Cheetah animation hero">
+
+        <div class="hero__sticky" id="hero-sticky">
+
+            <!-- Ambient (blurred bg) canvas -->
+            <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+            <!-- Foreground (sharp) canvas -->
+            <canvas id="tiger-canvas" aria-hidden="true"></canvas>
+
+            <!-- Preload progress bar -->
+            <div class="hero__loader" id="hero-loader" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                aria-valuenow="0">
+                <div class="hero__loader-bar" id="hero-loader-bar"></div>
+                <span class="hero__loader-text" id="hero-loader-text">Loading 0%</span>
+            </div>
+
+            <!-- Hero text overlay -->
+            <div class="hero__overlay" id="hero-overlay">
+                <p class="hero__eyebrow">Nike Originals</p>
+                <h1 class="hero__title">HUNGRY<br />FOR MORE</h1>
+                <p class="hero__sub">Faster. Sharper. Unstoppable.</p>
+                <a href="#first-look" class="btn btn--pill btn--outline hero__cta" id="hero-cta-btn">Discover Now</a>
+            </div>
+
+            <!-- Scroll hint -->
+            <div class="hero__scroll-hint" id="hero-scroll-hint" aria-hidden="true">
+                <span class="hero__scroll-text">Scroll</span>
+                <div class="hero__scroll-line"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ░░░ MAIN CONTENT ░░░ -->
+    <main id="main-content">
+
+        <!-- P1 · First Look -->
+        <section class="section first-look" id="first-look" aria-labelledby="fl-title">
+            <div class="container">
+                <p class="eyebrow">First Look</p>
+                <h2 class="heading" id="fl-title">NIKE AIR<br />MAX PULSE</h2>
+                <p class="body-copy body-copy--center">
+                    Engineered for relentless motion. The Air Max Pulse channels raw energy through every step,
+                    wrapping cutting-edge cushioning in an aggressive, sport-ready silhouette.
+                </p>
+                <div class="btn-group">
+                    <a href="#" class="btn btn--pill btn--solid" id="fl-shop-btn">Shop Now</a>
+                    <a href="#" class="btn btn--pill btn--ghost" id="fl-learn-btn">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- P2 · Best of Air Max Carousel -->
+        <section class="section carousel-section" id="carousel" aria-labelledby="carousel-title">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Best of Air Max</p>
+                    <h2 class="heading heading--left" id="carousel-title">THE<br />COLLECTION</h2>
+                    <div class="carousel-nav" role="group" aria-label="Carousel controls">
+                        <button class="carousel-nav__btn" id="carousel-prev" aria-label="Previous slide">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                aria-hidden="true">
+                                <polyline points="15 18 9 12 15 6" />
+                            </svg>
+                        </button>
+                        <button class="carousel-nav__btn" id="carousel-next" aria-label="Next slide">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                aria-hidden="true">
+                                <polyline points="9 18 15 12 9 6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-track-wrap">
+                <div class="carousel-track" id="carousel-track" role="list">
+
+                    <article class="card" role="listitem">
+                        <div class="card__img-wrap">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80&auto=format&fit=crop"
+                                alt="Nike Air Max - Red" class="card__img" loading="lazy" />
+                        </div>
+                        <div class="card__body">
+                            <p class="card__cat">Men's Shoes</p>
+                            <h3 class="card__title">Air Max 270</h3>
+                            <p class="card__price">$160</p>
+                        </div>
+                    </article>
+
+                    <article class="card" role="listitem">
+                        <div class="card__img-wrap">
+                            <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600&q=80&auto=format&fit=crop"
+                                alt="Nike Air Force 1" class="card__img" loading="lazy" />
+                        </div>
+                        <div class="card__body">
+                            <p class="card__cat">Men's Shoes</p>
+                            <h3 class="card__title">Air Force 1 '07</h3>
+                            <p class="card__price">$110</p>
+                        </div>
+                    </article>
+
+                    <article class="card" role="listitem">
+                        <div class="card__img-wrap">
+                            <img src="https://images.unsplash.com/photo-1584735175315-9d5df23be5b9?w=600&q=80&auto=format&fit=crop"
+                                alt="Nike React Infinity" class="card__img" loading="lazy" />
+                        </div>
+                        <div class="card__body">
+                            <p class="card__cat">Women's Shoes</p>
+                            <h3 class="card__title">React Infinity Run</h3>
+                            <p class="card__price">$160</p>
+                        </div>
+                    </article>
+
+                    <article class="card" role="listitem">
+                        <div class="card__img-wrap">
+                            <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=600&q=80&auto=format&fit=crop"
+                                alt="Nike Blazer Mid" class="card__img" loading="lazy" />
+                        </div>
+                        <div class="card__body">
+                            <p class="card__cat">Unisex Shoes</p>
+                            <h3 class="card__title">Blazer Mid '77</h3>
+                            <p class="card__price">$100</p>
+                        </div>
+                    </article>
+
+                    <article class="card" role="listitem">
+                        <div class="card__img-wrap">
+                            <img src="https://images.unsplash.com/photo-1556906781-9a412961a28b?w=600&q=80&auto=format&fit=crop"
+                                alt="Nike Vaporfly" class="card__img" loading="lazy" />
+                        </div>
+                        <div class="card__body">
+                            <p class="card__cat">Racing Shoes</p>
+                            <h3 class="card__title">Vaporfly Next%</h3>
+                            <p class="card__price">$250</p>
+                        </div>
+                    </article>
+
+                    <article class="card" role="listitem">
+                        <div class="card__img-wrap">
+                            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&q=80&auto=format&fit=crop"
+                                alt="Nike Training" class="card__img" loading="lazy" />
+                        </div>
+                        <div class="card__body">
+                            <p class="card__cat">Training Shoes</p>
+                            <h3 class="card__title">Metcon 9</h3>
+                            <p class="card__price">$130</p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- P3 · Cinematic Banner -->
+        <section class="section banner-section" id="banner" aria-labelledby="banner-title">
+            <div class="banner-inner">
+                <img src="https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=1600&q=85&auto=format&fit=crop"
+                    alt="Cheetah running through forest" class="banner__img" loading="lazy" />
+                <div class="banner__overlay"></div>
+                <div class="banner__content">
+                    <h2 class="banner__title" id="banner-title">STEP INTO<br />WHAT FEELS<br />GOOD</h2>
+                    <a href="#" class="btn btn--pill btn--outline banner__cta" id="banner-cta-btn">Shop the Look</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- P4 · The Essentials -->
+        <section class="section essentials-section" id="essentials" aria-labelledby="essentials-title">
+            <div class="container">
+                <p class="eyebrow">The Essentials</p>
+                <h2 class="heading" id="essentials-title">BUILT FOR<br />EVERYONE</h2>
+            </div>
+
+            <div class="essentials-grid">
+
+                <article class="essential-card" aria-label="Men's collection">
+                    <div class="essential-card__img-wrap">
+                        <img src="https://images.unsplash.com/photo-1483721310020-03333e577078?w=800&q=80&auto=format&fit=crop"
+                            alt="Men's Nike collection" class="essential-card__img" loading="lazy" />
+                    </div>
+                    <div class="essential-card__label">
+                        <a href="#" class="btn btn--pill btn--white" id="essentials-men-btn">Men's</a>
+                    </div>
+                </article>
+
+                <article class="essential-card" aria-label="Women's collection">
+                    <div class="essential-card__img-wrap">
+                        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80&auto=format&fit=crop"
+                            alt="Women's Nike collection" class="essential-card__img" loading="lazy" />
+                    </div>
+                    <div class="essential-card__label">
+                        <a href="#" class="btn btn--pill btn--white" id="essentials-women-btn">Women's</a>
+                    </div>
+                </article>
+
+                <article class="essential-card" aria-label="Kids' collection">
+                    <div class="essential-card__img-wrap">
+                        <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&q=80&auto=format&fit=crop"
+                            alt="Kids' Nike collection" class="essential-card__img" loading="lazy" />
+                    </div>
+                    <div class="essential-card__label">
+                        <a href="#" class="btn btn--pill btn--white" id="essentials-kids-btn">Kids'</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ░░░ FOOTER ░░░ -->
+    <footer class="footer" aria-label="Site footer">
+        <div class="footer__inner container">
+
+            <div class="footer__col">
+                <a href="#" class="footer__logo" aria-label="Nike Home">
+                    <svg class="swoosh swoosh--footer" viewBox="0 0 1000 369" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+                        <path
+                            d="M 0 369 L 979 0 C 979 0 1000 -6 996 20 C 992 46 935 75 791 122 C 648 169 158 369 158 369 Z" />
+                    </svg>
+                </a>
+                <p class="footer__tagline">Just Do It.</p>
+                <div class="footer__social" aria-label="Social links">
+                    <a href="#" class="footer__social-link" aria-label="Twitter">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="footer__social-link" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <nav class="footer__col" aria-label="Shoes links">
+                <h3 class="footer__heading">Shoes</h3>
+                <ul role="list">
+                    <li><a href="#">Air Max</a></li>
+                    <li><a href="#">Running</a></li>
+                    <li><a href="#">Training</a></li>
+                    <li><a href="#">Basketball</a></li>
+                    <li><a href="#">Lifestyle</a></li>
+                </ul>
+            </nav>
+
+            <nav class="footer__col" aria-label="Support links">
+                <h3 class="footer__heading">Support</h3>
+                <ul role="list">
+                    <li><a href="#">Get Help</a></li>
+                    <li><a href="#">Order Status</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                </ul>
+            </nav>
+
+            <nav class="footer__col" aria-label="Company links">
+                <h3 class="footer__heading">Company</h3>
+                <ul role="list">
+                    <li><a href="#">About Nike</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Investors</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <div class="footer__bottom container">
+            <p class="footer__copy">© 2026 Nike, Inc. All Rights Reserved.</p>
+            <nav class="footer__legal" aria-label="Legal links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Cookie Settings</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
